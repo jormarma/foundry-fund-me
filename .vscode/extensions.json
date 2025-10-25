@@ -1,0 +1,22 @@
+{
+  "recommendations": [
+    // Solidity support
+      "NomicFoundation.hardhat-solidity",
+
+    // TOML support
+    "tamasfe.even-better-toml",
+
+    // Markdown related extensions
+    "yzhang.markdown-all-in-one",
+    "DavidAnson.vscode-markdownlint",
+    "bierner.markdown-mermaid",
+    "yzane.markdown-pdf",
+    "bierner.markdown-checkbox",
+    "GitHub.copilot-chat",
+    "GitHub.copilot",
+
+    // TODO extensions
+    "wayou.vscode-todo-highlight",
+    "Gruntfuggly.todo-tree"
+  ]
+}
