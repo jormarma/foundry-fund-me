@@ -22,3 +22,13 @@ forge init fund-me
 2. Tell foundry that `@chainlink/` need to point to `lib/chainlink-brownie-contracts/`, ([chainlink-brownie-contracts](https://github.com/smartcontractkit/chainlink-brownie-contracts))
 
 > NOTE: now `forge build` succeeds with 1 warning and 2 notes.
+
+## 03 Rename errors
+
+It is a best practice to name your errors with the name of the contract and two underscores.
+
+Example:
+
+- Contract name: `FundMe`
+- Error name: `NotOwner`
+- New error name: `FundMe__NotOwner`
