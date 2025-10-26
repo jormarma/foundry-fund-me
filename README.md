@@ -4,6 +4,7 @@
 - [02 Install Chainlink dependencies](#02-install-chainlink-dependencies)
 - [03 Rename errors](#03-rename-errors)
 - [04 Add Testing to test the FundMe contract](#04-add-testing-to-test-the-fundme-contract)
+- [05 Add more tests and debug](#05-add-more-tests-and-debug)
 - [Appendix: Foundry](#appendix-foundry)
   - [Documentation](#documentation)
   - [Usage](#usage)
@@ -60,6 +61,35 @@ Example:
    - Add a `testFundMeMinimumDollarIsFive() public view` function testing that the contract only receives funds with a minimum `USD` value of `5`.
 4. Test the function executing `forge test`
 5. You can add more verbosity to the test, for example to see logs with `console.log`, using `forge test -v` or `forge test -vv` up to `-vvvvv`.
+
+## 05 Add more tests and debug
+
+1. Add a new test to check that the owner is the sender.
+
+    ```solidity
+    function testOwnerIsMsgSender() public view {
+        assertEq(fundMe.i_owner(), msg.sender);
+    }
+    ```
+
+2. Executing the test it fails. We add more logs to see why.
+
+    ```solidity
+    function testOwnerIsMsgSender() public view {
+        console.log(fundMe.i_owner());
+        console.log(msg.sender);
+        assertEq(fundMe.i_owner(), msg.sender);
+    }
+    ```
+
+3. Executing the tests with `-vv` we see that indeed, the addresses are different.
+Technically, the contract creating the `FundMe` contract is the `FundMeTest` contract, not us.
+
+    ```solidity
+    function testOwnerIsMsgSender() public view {
+        assertEq(fundMe.i_owner(), address(this));
+    }
+    ```
 
 ## Appendix: Foundry
 
