@@ -5,6 +5,7 @@
 - [03 Rename errors](#03-rename-errors)
 - [04 Add Testing to test the FundMe contract](#04-add-testing-to-test-the-fundme-contract)
 - [05 Add more tests and debug](#05-add-more-tests-and-debug)
+- [06 Advanced deployment scripts](#06-advanced-deployment-scripts)
 - [Appendix: Foundry](#appendix-foundry)
   - [Documentation](#documentation)
   - [Usage](#usage)
@@ -90,6 +91,29 @@ Technically, the contract creating the `FundMe` contract is the `FundMeTest` con
         assertEq(fundMe.i_owner(), address(this));
     }
     ```
+
+## 06 Advanced deployment scripts
+
+1. Create a deploy script called `DeployFundMe.s.sol`
+2. Write the following code in it:
+
+    ```solidity
+    // SPDX-License-Identifier: MIT
+    pragma solidity ^0.8.18;
+
+    import {Script} from "forge-std/Script.sol";
+    import {FundMe} from "../src/FundMe.sol";
+
+    contract DeployFundMe is Script {
+        function run() external {
+            vm.startBroadcast();
+            new FundMe();
+            vm.stopBroadcast();
+        }
+    }
+    ```
+
+3. Test that you can deploy `FundMe` using `forge script script/DeployFundMe.s.sol`.
 
 ## Appendix: Foundry
 
